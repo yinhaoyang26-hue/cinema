@@ -1,0 +1,163 @@
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #0a0a0a;
+    --accent-color: #E30613; /* 经典的电影节/时装周红 */
+    --text-primary: #F5F5F5;
+    --text-dark: #111111;
+    --transition: all 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 垂直手风琴布局 */
+.accordion {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+.panel {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 鼠标悬停展开逻辑 */
+.panel:hover {
+    flex: 5;
+}
+
+/* 各板块色彩差异化 */
+.home { background-color: var(--bg-color); }
+.selection { background-color: var(--accent-color); color: var(--text-dark); }
+.about { background-color: #f0f0f0; color: var(--text-dark); }
+
+/* 侧边/底部标签 */
+.panel-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.1);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.2rem;
+    pointer-events: none;
+}
+
+.home .panel-label { color: var(--accent-color); }
+.selection .panel-label { color: var(--text-primary); }
+.about .panel-label { color: var(--accent-color); }
+
+/* 内容容器 */
+.panel-content {
+    width: 100%;
+    height: 100%;
+    padding: 60px 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.panel:hover .panel-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 字体排版 */
+h1, h2, h3 {
+    font-family: 'DM Serif Display', serif;
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.main-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    margin-bottom: 2rem;
+}
+
+.section-heading {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 4px solid currentColor;
+    display: inline-block;
+}
+
+/* 电影列表样式 */
+.film-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.film-item {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 1rem;
+}
+
+.film-meta {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.film-name {
+    font-size: 2rem;
+}
+
+/* 关于页面排版 */
+.about-wrap {
+    max-width: 800px;
+}
+
+.manifesto {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.manifesto-zh {
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 600px;
+    opacity: 0.8;
+}
+
+/* 针对 Selection 板块的特殊调整（红色背景上的深色文字） */
+.selection .film-item {
+    border-color: rgba(255,255,255,0.3);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .main-title { font-size: 3rem; }
+    .section-heading { font-size: 2rem; }
+    .film-name { font-size: 1.5rem; }
+}
