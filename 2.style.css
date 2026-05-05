@@ -1,4 +1,4 @@
-/* 全局重置 */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -6,111 +6,97 @@
 }
 
 :root {
-    --bg-color: #0a0a0a;
-    --accent-color: #E30613;
-    --text-primary: #F5F5F5;
-    --text-dark: #111111;
-    --text-muted: rgba(245, 245, 245, 0.7);
-    --transition: all 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+    --bg-black: #0a0a0a;
+    --accent-red: #E30613; 
+    --text-white: #F5F5F5;
+    --transition-slow: all 0.8s cubic-bezier(0.8, 0, 0.1, 1);
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
+    background-color: var(--bg-black);
+    color: var(--text-white);
     font-family: 'Inter', sans-serif;
     height: 100vh;
     overflow: hidden;
 }
 
-/* 艺术背景：模拟粗糙美学 */
+/* BRANDING */
+.top-right-brand {
+    position: fixed;
+    top: 30px;
+    right: 40px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.4rem;
+    z-index: 100;
+    color: var(--accent-red);
+}
+
+/* BACKGROUND */
 .background-art {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; pointer-events: none;
 }
 
 .grain {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* 模拟颗粒感 */
+    position: absolute; width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
     opacity: 0.15;
 }
 
 .desert-silhouette {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 35vh;
-    background: linear-gradient(to top, rgba(227, 6, 19, 0.05), transparent);
-    /* 绘制一个粗糙的沙漠地平线线条 */
-    clip-path: polygon(0% 100%, 0% 80%, 15% 75%, 30% 85%, 45% 65%, 65% 80%, 85% 60%, 100% 75%, 100% 100%);
-    opacity: 0.4;
+    position: absolute; bottom: 0; width: 100%; height: 30vh;
+    background: linear-gradient(to top, rgba(227, 6, 19, 0.08), transparent);
+    clip-path: polygon(0% 100%, 0% 80%, 10% 75%, 25% 85%, 40% 60%, 60% 80%, 80% 50%, 100% 70%, 100% 100%);
+    opacity: 0.3;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* 垂直手风琴布局 */
+/* ACCORDION */
 .accordion {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    z-index: 1;
+    display: flex; flex-direction: column; height: 100vh;
+    width: 100%; position: relative; z-index: 1;
 }
 
 .panel {
-    flex: 1;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-    transition: var(--transition);
+    flex: 1; display: flex; position: relative; overflow: hidden;
+    transition: var(--transition-slow);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .panel:hover {
-    flex: 10; /* 极大的展开比，增强冲击力 */
+    flex: 25; /* Expanded heavily to give room to video and text */
 }
 
-/* 各板块色彩差异化 */
+/* THEMES */
 .home { background-color: transparent; }
-.selection { background-color: var(--accent-color); color: var(--text-dark); }
-.about { background-color: #f0f0f0; color: var(--text-dark); }
+.selection { background-color: var(--accent-red); color: #000; }
+.about { background-color: #eee; color: #111; }
 
-/* 板块标签 */
 .panel-label {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 45px;
-    padding: 0 30px;
-    display: flex;
-    align-items: center;
-    background: rgba(0,0,0,0.2);
-    font-size: 0.75rem;
+    bottom: 0; left: 0;
+    width: 100%; height: 45px;
+    padding: 0 35px;
+    display: flex; align-items: center;
+    background: rgba(0,0,0,0.4);
+    font-size: 0.7rem;
     font-weight: 900;
-    letter-spacing: 0.3rem;
-    pointer-events: none;
+    letter-spacing: 0.4rem;
 }
 
-.home .panel-label { color: var(--accent-color); }
-.selection .panel-label { color: var(--text-primary); background: rgba(0,0,0,0.1); }
-.about .panel-label { color: var(--accent-color); }
+.home .panel-label, .about .panel-label { color: var(--accent-red); }
+.selection .panel-label { color: var(--text-white); }
 
-/* 内容容器 */
+/* CONTENT */
 .panel-content {
-    width: 100%;
-    height: 100%;
-    padding: 6vh 8vw;
+    width: 100%; height: 100%;
+    padding: 6vh 6vw;
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
     transition: opacity 0.5s ease 0.4s, transform 0.6s ease 0.4s;
-    overflow-y: auto; /* 允许展开后滚动查看电影列表 */
+    overflow-y: auto;
 }
 
 .panel:hover .panel-content {
@@ -118,85 +104,85 @@ body {
     transform: translateY(0);
 }
 
-/* 字体排版 */
+/* TYPOGRAPHY */
 h1, h2, h3 {
     font-family: 'DM Serif Display', serif;
     text-transform: uppercase;
-    line-height: 0.9;
-    font-weight: 400;
+    line-height: 0.85;
 }
 
-.main-title {
-    font-size: clamp(3rem, 12vw, 10rem);
-    margin-bottom: 2rem;
-    color: var(--accent-color);
+.theme-title {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    color: var(--accent-red);
+    margin-bottom: 1.5rem;
 }
 
+.festival-subname {
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+    letter-spacing: -0.01rem;
+    opacity: 0.9;
+}
+
+.info-bar { margin-top: 4rem; }
+.edition-text { font-weight: 900; font-size: 1.1rem; letter-spacing: 0.2rem; color: var(--accent-red); }
+.student-disclaimer { margin-top: 10px; font-size: 0.7rem; opacity: 0.6; letter-spacing: 0.1rem; }
+
+/* SELECTION */
 .section-heading {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 3rem;
     border-bottom: 2px solid currentColor;
     display: inline-block;
 }
 
-/* 电影列表排版 */
-.film-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
+.film-list { display: flex; flex-direction: column; gap: 4rem; max-width: 1100px; }
+.film-item { border-left: 1px solid rgba(0,0,0,0.1); padding-left: 30px; }
+.selection .film-item { border-left: 1px solid rgba(255,255,255,0.4); }
+
+.film-meta { font-size: 0.75rem; font-weight: 900; display: block; margin-bottom: 0.5rem; }
+.film-name { font-size: 2.6rem; margin-bottom: 1.2rem; }
+.film-synopsis { font-size: 0.85rem; line-height: 1.7; font-weight: 400; opacity: 0.9; }
+
+/* ABOUT LAYOUT - FIXED FOR LANDSCAPE VIDEO */
+.about-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1200px;
 }
 
-.film-item {
-    border-left: 1px solid rgba(0,0,0,0.1);
-    padding-left: 20px;
-    margin-bottom: 1rem;
+.about-text-wrap { width: 100%; }
+.manifesto { font-size: 2.2rem; font-family: 'DM Serif Display', serif; margin-bottom: 2rem; line-height: 1.1; }
+.rationale-body p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.05rem; max-width: 900px; }
+
+.video-section {
+    width: 100%;
+    max-width: 800px; /* Limits the width so it doesn't get too tall */
 }
 
-.selection .film-item {
-    border-left: 1px solid rgba(255,255,255,0.3);
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Perfect 16:9 Aspect Ratio */
+    background: #000;
 }
 
-.film-meta {
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.15rem;
-    display: block;
-    margin-bottom: 0.5rem;
-    opacity: 0.8;
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
 }
 
-.film-name {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-}
+/* SCROLLBAR */
+.panel-content::-webkit-scrollbar { width: 5px; }
+.panel-content::-webkit-scrollbar-thumb { background: var(--accent-red); }
 
-.film-synopsis {
-    font-size: 0.85rem; /* 字体小于标题和Meta */
-    line-height: 1.6;
-    max-width: 400px;
-    font-weight: 400;
-    font-family: 'Inter', sans-serif;
-    text-transform: none; /* 简介不使用全大写，增加可读性 */
-    opacity: 0.9;
-}
-
-/* 关于页面 */
-.about-wrap { max-width: 900px; }
-.manifesto {
-    font-size: 2.2rem;
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    font-weight: 300;
-}
-.curatorial-note {
-    font-size: 1rem;
-    line-height: 1.8;
-    opacity: 0.7;
-}
-
-/* 针对移动端的微调 */
-@media (max-width: 768px) {
-    .film-list { grid-template-columns: 1fr; }
-    .main-title { font-size: 4rem; }
-    .film-name { font-size: 1.8rem; }
+/* MOBILE */
+@media (min-width: 1024px) {
+    .about-layout {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .about-text-wrap { width: 55%; }
+    .video-section { width: 45%; }
 }
