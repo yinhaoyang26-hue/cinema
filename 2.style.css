@@ -25,9 +25,9 @@ body {
     position: fixed;
     top: 30px;
     right: 40px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 900;
-    letter-spacing: 0.4rem;
+    letter-spacing: normal;
     z-index: 100;
     color: var(--accent-red);
 }
@@ -66,7 +66,7 @@ body {
 }
 
 .panel:hover {
-    flex: 25; /* Expanded heavily to give room to video and text */
+    flex: 25; 
 }
 
 /* THEMES */
@@ -83,16 +83,16 @@ body {
     background: rgba(0,0,0,0.4);
     font-size: 0.7rem;
     font-weight: 900;
-    letter-spacing: 0.4rem;
+    letter-spacing: normal;
 }
 
 .home .panel-label, .about .panel-label { color: var(--accent-red); }
 .selection .panel-label { color: var(--text-white); }
 
-/* CONTENT */
+/* CONTENT ANIMATION */
 .panel-content {
     width: 100%; height: 100%;
-    padding: 6vh 6vw;
+    padding: 8vh 8vw;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease 0.4s, transform 0.6s ease 0.4s;
@@ -104,66 +104,105 @@ body {
     transform: translateY(0);
 }
 
-/* TYPOGRAPHY */
+/* TYPOGRAPHY: UNIVERSAL SANS-SERIF HEADERS (Sundance Style) */
 h1, h2, h3 {
-    font-family: 'DM Serif Display', serif;
-    text-transform: uppercase;
-    line-height: 0.85;
+    font-family: 'Inter', sans-serif;
+    text-transform: none; /* Only first letter capitalised as per HTML */
 }
 
-.theme-title {
-    font-size: clamp(2.5rem, 8vw, 6rem);
+/* HOME PAGE TYPOGRAPHY */
+.home .theme-title {
+    font-weight: 900;
+    font-size: clamp(2.2rem, 7vw, 5.2rem); 
     color: var(--accent-red);
     margin-bottom: 1.5rem;
+    letter-spacing: -0.04em; 
+    line-height: 0.95; 
 }
 
-.festival-subname {
-    font-size: clamp(1.2rem, 3vw, 2.5rem);
-    letter-spacing: -0.01rem;
+.home .festival-subname {
+    font-weight: 700;
+    font-size: clamp(1.1rem, 2.5vw, 2rem);
+    letter-spacing: -0.02em;
     opacity: 0.9;
 }
 
 .info-bar { margin-top: 4rem; }
-.edition-text { font-weight: 900; font-size: 1.1rem; letter-spacing: 0.2rem; color: var(--accent-red); }
+.edition-text { font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1rem; color: var(--accent-red); }
 .student-disclaimer { margin-top: 10px; font-size: 0.7rem; opacity: 0.6; letter-spacing: 0.1rem; }
 
-/* SELECTION */
+/* SELECTION & ABOUT HEADINGS (Matching Home Style) */
 .section-heading {
-    font-size: 2.8rem;
+    font-weight: 900;
+    font-size: 3rem;
     margin-bottom: 3rem;
-    border-bottom: 2px solid currentColor;
+    border-bottom: 3px solid currentColor;
     display: inline-block;
+    letter-spacing: -0.04em; /* Match Home Theme Spacing */
+    line-height: 1;
 }
 
 .film-list { display: flex; flex-direction: column; gap: 4rem; max-width: 1100px; }
 .film-item { border-left: 1px solid rgba(0,0,0,0.1); padding-left: 30px; }
 .selection .film-item { border-left: 1px solid rgba(255,255,255,0.4); }
 
-.film-meta { font-size: 0.75rem; font-weight: 900; display: block; margin-bottom: 0.5rem; }
-.film-name { font-size: 2.6rem; margin-bottom: 1.2rem; }
+.film-meta { font-size: 0.75rem; font-weight: 900; display: block; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+
+/* Film Name Styling (Matching Home Spacing) */
+.film-name { 
+    font-weight: 900;
+    font-size: 2.6rem; 
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
 .film-synopsis { font-size: 0.85rem; line-height: 1.7; font-weight: 400; opacity: 0.9; }
 
-/* ABOUT LAYOUT - FIXED FOR LANDSCAPE VIDEO */
+/* ABOUT LAYOUT */
 .about-layout {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    max-width: 1200px;
+    max-width: 1300px;
 }
 
 .about-text-wrap { width: 100%; }
-.manifesto { font-size: 2.2rem; font-family: 'DM Serif Display', serif; margin-bottom: 2rem; line-height: 1.1; }
-.rationale-body p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.05rem; max-width: 900px; }
+
+/* Manifesto (Matching Home Spacing) */
+.manifesto { 
+    font-weight: 900;
+    font-size: 2.2rem; 
+    margin-bottom: 2.5rem; 
+    line-height: 1; 
+    letter-spacing: -0.04em;
+}
+
+.term-box {
+    background: rgba(0,0,0,0.03);
+    padding: 20px;
+    border-left: 3px solid var(--accent-red);
+    margin-top: 30px;
+}
+
+.term-box p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.rationale-body p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.05rem; }
 
 .video-section {
     width: 100%;
-    max-width: 800px; /* Limits the width so it doesn't get too tall */
+    max-width: 850px; 
 }
 
 .video-container {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* Perfect 16:9 Aspect Ratio */
+    padding-top: 56.25%;
     background: #000;
 }
 
@@ -177,7 +216,7 @@ h1, h2, h3 {
 .panel-content::-webkit-scrollbar { width: 5px; }
 .panel-content::-webkit-scrollbar-thumb { background: var(--accent-red); }
 
-/* MOBILE */
+/* DESKTOP VIEW */
 @media (min-width: 1024px) {
     .about-layout {
         flex-direction: row;
